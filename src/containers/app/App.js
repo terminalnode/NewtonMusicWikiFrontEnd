@@ -5,12 +5,13 @@ import ContentDisplay from '../content-display/ContentDisplay';
 
 function App() {
   return (
-    <div className="App">
+    <div className="AppGrid">
       <Logo className="Logo" />
       <Sidebar className="Sidebar" />
       <ContentDisplay className="ContentDisplay" />
     </div>
   );
 }
+
 
 export default App;
