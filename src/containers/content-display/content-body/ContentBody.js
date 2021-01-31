@@ -1,9 +1,10 @@
 import './ContentBody.css';
 
-function ContentBody({text}) {
+function ContentBody({contentName}) {
   return (
     <div className="ContentBody">
-        {text}
+      {/* TODO create a function for displaying content based on content name */}
+      {contentName}
     </div>
   );
 }

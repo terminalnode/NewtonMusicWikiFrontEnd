@@ -1,9 +1,10 @@
 import './ContentHeader.css';
 
-function ContentHeader({text}) {
+function ContentHeader({contentName}) {
   return (
     <div className="ContentHeader">
-        {text}
+      {/* TODO create a function for displaying content based on content name */}
+      {contentName}
     </div>
   );
 }
