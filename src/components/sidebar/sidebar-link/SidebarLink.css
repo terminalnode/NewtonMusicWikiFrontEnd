@@ -1,5 +1,11 @@
-.SidebarLink {
+.SidebarLinkText {
     color: goldenrod;
+    width: fit-content;
+}
+
+.SidebarLinkText:hover {
+    color:lightskyblue;
+    cursor: pointer;
 }
 
 .SidebarLinkChild {
