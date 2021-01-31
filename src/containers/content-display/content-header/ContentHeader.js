@@ -1,7 +1,9 @@
 import './ContentHeader.css';
 
 function ContentHeader({contentName}) {
-  const header = headers[contentName];
+  const header = headers[contentName] !== undefined
+    ? headers[contentName]
+    : headers.home;
 
   return (
     <div className="ContentHeader">
