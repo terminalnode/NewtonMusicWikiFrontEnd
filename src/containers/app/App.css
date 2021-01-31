@@ -1,3 +1,8 @@
+:root {
+  background-color: #222;
+  color: antiquewhite;
+}
+
 .App {
   display: grid;
   padding: 10px;
@@ -15,10 +20,10 @@
   grid-row: 1;
 }
 
-.Content {
+.ContentDisplay {
   grid-column-start: 2;
   grid-column-end: 4;
-  grid-row-start: 2;
+  grid-row-start: 1;
   grid-row-end: 4;
 }
 
