@@ -1,23 +1,18 @@
-import logo from '../resources/logo.svg';
 import './App.css';
+import Sidebar from '../components/sidebar/Sidebar';
+import Logo from '../components/logo/Logo';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Logo className="Logo" />
+      <h1 className="Header">HELLO I AM HEADER</h1>
+      <p className="Content">
+        Hello, this is content.
+        I am filled to the brim with content. The best content, some would say. The content is so content
+        that it will leave you content with how fantastic the quality of the content was.
+      </p>
+      <Sidebar className="Sidebar" />
     </div>
   );
 }
