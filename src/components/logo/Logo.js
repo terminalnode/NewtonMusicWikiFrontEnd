@@ -3,8 +3,8 @@ import logo from '../../resources/logo.png';
 
 function Logo() {
   return (
-    <div>
-        <img src={logo} className="Logo" alt="logo" />
+    <div className="Logo">
+        <img src={logo} className="LogoImage" alt="logo" />
     </div>
   );
 }

@@ -5,19 +5,17 @@
 
 .App {
   display: grid;
-  padding: 10px;
 }
 
 .Sidebar {
   grid-column: 1;
   grid-row-start: 2;
   grid-row-end: 4;
-}
-
-.Header {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row: 1;
+  max-width: 15em;
+  /*
+  border-style: solid;
+  border-color: red;
+  */
 }
 
 .ContentDisplay {
@@ -25,9 +23,18 @@
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 4;
+  /*
+  border-style: solid;
+  border-color: red;
+  */
 }
 
 .Logo {
   grid-column: 1;
   grid-row: 1;
+  max-width: 15em;
+  /*
+  border-style: solid;
+  border-color: red;
+  */
 }
