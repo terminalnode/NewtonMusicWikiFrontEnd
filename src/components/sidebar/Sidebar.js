@@ -6,8 +6,8 @@ function Sidebar({setContentNameFunction}) {
     <div className="Sidebar">
       <SidebarLink onLinkClick={() => setContentNameFunction("home")} text="Home" />
       <SidebarLink onLinkClick={() => setContentNameFunction("artists")} text="Artists">
-        <SidebarLink onLinkClick={() => setContentNameFunction("artists-people")} text="- People" />
-        <SidebarLink onLinkClick={() => setContentNameFunction("artists-band")} text="- Bands" />
+        <SidebarLink onLinkClick={() => setContentNameFunction("artists_people")} text="- People" />
+        <SidebarLink onLinkClick={() => setContentNameFunction("artists_bands")} text="- Bands" />
       </SidebarLink>
       <SidebarLink onLinkClick={() => setContentNameFunction("albums")} text="Albums" />
       <SidebarLink onLinkClick={() => setContentNameFunction("songs")} text="Songs" />
