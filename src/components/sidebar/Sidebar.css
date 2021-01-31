@@ -1,3 +1,7 @@
 .Sidebar {
-    display: grid;
+    background-color: #333;
+    padding-left: 0.5em;
+}
+.SidebarLink {
+    padding-left: 0.5em;
 }

@@ -1,5 +1,10 @@
+:root {
+  align-content: center;
+}
+
 .Logo {
   height: 15vmin;
+  width: 15vmin;
   pointer-events: none;
 }
 
