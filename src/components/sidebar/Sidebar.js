@@ -1,11 +1,16 @@
 import './Sidebar.css';
+import SidebarLink from './sidebar-link/SidebarLink'
 
 function Sidebar() {
   return (
     <div className="Sidebar">
-        <p>HELLO I AM SIDEBAR</p>
+      <SidebarLink text="Artists">
+        <SidebarLink text="People" />
+        <SidebarLink text="Bands" />
+      </SidebarLink>
+      <SidebarLink text="Albums" />
+      <SidebarLink text="Songs" />
     </div>
-
   );
 }
 
