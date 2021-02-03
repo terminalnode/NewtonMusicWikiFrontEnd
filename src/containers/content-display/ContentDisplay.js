@@ -2,7 +2,7 @@ import './ContentDisplay.css';
 import ContentHeader from './content-header/ContentHeader'
 import ContentBody from './content-body/ContentBody'
 
-function ContentDisplay({contentName, artistList, albumList}) {
+function ContentDisplay({contentName, artistList, albumList, songList}) {
   return (
     <div className="ContentDisplay">
         <ContentHeader contentName={contentName} />
@@ -10,6 +10,7 @@ function ContentDisplay({contentName, artistList, albumList}) {
           contentName={contentName}
           artistList={artistList}
           albumList={albumList}
+          songList={songList}
         />
     </div>
   );

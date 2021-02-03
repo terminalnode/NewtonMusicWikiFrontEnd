@@ -6,7 +6,7 @@ import ArtistPeoplePage from '../../../components/contents/artist-page/people/Ar
 import AlbumPage from '../../../components/contents/album-page/AlbumPage';
 import SongPage from '../../../components/contents/song-page/SongPage';
 
-function ContentBody({contentName, artistList, albumList}) {
+function ContentBody({contentName, artistList, albumList, songList}) {
   let content;
 
   switch (contentName) {
@@ -14,7 +14,7 @@ function ContentBody({contentName, artistList, albumList}) {
     case "artists": content = <ArtistsPage artistList={artistList} />; break;
     case "artists_people": content = <ArtistPeoplePage artistList={artistList} />; break;
     case "artists_bands": content = <ArtistBandPage artistList={artistList} />; break;
-    case "songs": content = <SongPage />; break;
+    case "songs": content = <SongPage songList={songList}/>; break;
     case "albums": content = <AlbumPage albumList={albumList} />; break;
     default: content = <HomePage />; break;
   }
