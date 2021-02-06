@@ -6,7 +6,7 @@ export const themeNewton = createMuiTheme({
   palette: {
     background: {
       paper: '#333',
-      default: "#222"
+      default: "#222",
     },
     primary: {
       main: orange[500],
@@ -24,8 +24,11 @@ export const themeNewton = createMuiTheme({
     }
   },
   typography: {
+    body2: {
+      fontSize: '1rem',
+    },
     h1: {
-      fontSize: '2.5rem'
+      fontSize: '2.5rem',
     },
   },
 });

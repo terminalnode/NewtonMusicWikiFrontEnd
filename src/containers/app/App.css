@@ -1,31 +1,8 @@
-:root {
-  background-color: #222;
-  color: antiquewhite;
-}
-
-.AppGrid {
-  display: grid;
-  grid-template-columns: min-content;
-  grid-template-rows: min-content;
-}
-
-.Sidebar {
-  grid-column: 1;
-  grid-row-start: 2;
-  grid-row-end: 4;
-}
-
 .ContentDisplay {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 4;
   padding: 1em 1em 1em 1em;
 }
 
 .Logo {
-  grid-column: 1;
-  grid-row: 1;
   border-style: solid;
   border-color: #333;
   border-width: 0.5em;
