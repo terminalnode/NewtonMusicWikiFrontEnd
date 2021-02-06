@@ -5,7 +5,7 @@ export const getArtistList = async (data) => {
     await endpoint.get("/rest/v1/artist")
     .then(resp => {
         console.log("Retrived Data:", resp.data)
-        data.setArtistList(resp.data)
+        data.setArtistList(resp.data.artists)
     })
     .catch(e => console.log("Error:", e));
 
