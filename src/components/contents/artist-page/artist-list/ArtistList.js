@@ -13,6 +13,7 @@ export default function ArtistList({artists}) {
             <DataGrid
                 columns={ columns }
                 rows={ artists }
+                pageSize={ 10 }
             />
         </div>
     );
