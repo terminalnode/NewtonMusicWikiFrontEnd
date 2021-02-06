@@ -1,3 +1,7 @@
+.Link {
+  text-decoration: none;
+}
+
 .LogoImage {
   padding: 1.5em;
   max-height: 6rem;
