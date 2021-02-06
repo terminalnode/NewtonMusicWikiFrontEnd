@@ -1,6 +1,7 @@
 .SidebarLinkText {
     color: goldenrod;
     width: fit-content;
+    padding-bottom: 0.75em;
 }
 
 .SidebarLinkText:hover {

@@ -1,7 +1,7 @@
 import './Sidebar.css';
 import SidebarLink from './sidebar-link/SidebarLink'
 
-function Sidebar({setContentNameFunction}) {
+export default function Sidebar({setContentNameFunction}) {
   return (
     <div className="Sidebar">
       <SidebarLink onLinkClick={() => setContentNameFunction("home")} text="Home" />
@@ -14,5 +14,3 @@ function Sidebar({setContentNameFunction}) {
     </div>
   );
 }
-
-export default Sidebar;

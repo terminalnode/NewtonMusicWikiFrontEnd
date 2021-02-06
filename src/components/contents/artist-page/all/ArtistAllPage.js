@@ -3,6 +3,7 @@ import ArtistList from '../artist-list/ArtistList';
 import './ArtistAllPage.css';
 import { useContext } from 'react'
 import { DatabaseContext } from '../../../../DatabaseContext'
+import NewtonButton from '../../../material/newton-button/NewtonButton';
 import { Button } from '@material-ui/core';
 
 export default function ArtistAllPage() {
@@ -13,15 +14,22 @@ export default function ArtistAllPage() {
 
   return (
     <div className="ArtistAllPage">
-      <Button
-        onClick={ () => reloadArtists(data) }>
-        Refresh
-      </Button>
-      <ArtistList artists={ data.artistList } />
+      <div className="PageTop">
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={ () => reloadArtists(data) }>
+            Refresh
+          </Button>
+      </div>
+
+      <div className="PageBottom">
+        <ArtistList artists={ data.artistList } />
+      </div>
     </div>
   );
 }
 
 function reloadArtists(data) {
-    getArtistList(data);
+  getArtistList(data);
 }

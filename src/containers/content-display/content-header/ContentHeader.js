@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import './ContentHeader.css';
 
 function ContentHeader({contentName}) {
@@ -6,10 +7,9 @@ function ContentHeader({contentName}) {
     : headers.home;
 
   return (
-    <div className="ContentHeader">
-      {/* TODO create a function for displaying content based on content name */}
+    <Typography variant="h1">
       {header}
-    </div>
+    </Typography>
   );
 }
 
