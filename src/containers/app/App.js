@@ -1,9 +1,8 @@
 import './App.css';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Logo from '../../components/logo/Logo';
-import ContentDisplay from '../content-display/ContentDisplay';
-import { useState } from 'react';
 import { CssBaseline, Grid, ThemeProvider } from '@material-ui/core';
+import { useState } from 'react';
+import NewtonAppBar from '../../components/newton-app-bar/NewtonAppBar';
+import ContentDisplay from '../content-display/ContentDisplay';
 import { themeNewton } from './themeNewton';
 
 function App() {
@@ -18,10 +17,7 @@ function App() {
     <ThemeProvider theme={themeNewton}>
       <CssBaseline />
       <Grid container>
-        <Grid>
-          <Logo />
-          <Sidebar setContentNameFunction={setContentName} />
-        </Grid>
+        <NewtonAppBar setContentNameFunction={setContentName}/>
         <ContentDisplay
           contentName={contentName}
           artistList={{ get: artistList, set: setArtistList }}
