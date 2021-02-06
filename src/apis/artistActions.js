@@ -1,11 +1,11 @@
 import endpoint from './endpoint';
 
-export const getArtistList = async (artistList) => {
+export const getArtistList = async (data) => {
     console.log("Fetching all artists.")
     await endpoint.get("/rest/v1/artist")
     .then(resp => {
         console.log("Retrived Data:", resp.data)
-        artistList.set(resp.data)
+        data.setArtistList(resp.data)
     })
     .catch(e => console.log("Error:", e));
 

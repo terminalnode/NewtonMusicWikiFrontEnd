@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './containers/app/App';
 import reportWebVitals from './reportWebVitals';
+import { DatabaseProvider } from './DatabaseContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DatabaseProvider>
+      <App />
+    </DatabaseProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
