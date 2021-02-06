@@ -3,8 +3,7 @@ import ArtistList from '../artist-list/ArtistList';
 import './ArtistAllPage.css';
 import { useContext } from 'react'
 import { DatabaseContext } from '../../../../DatabaseContext'
-import NewtonButton from '../../../material/newton-button/NewtonButton';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 
 export default function ArtistAllPage() {
   const data = useContext(DatabaseContext);
@@ -14,6 +13,10 @@ export default function ArtistAllPage() {
 
   return (
     <div className="ArtistAllPage">
+      <Typography variant="h1">
+        Browse all artists
+      </Typography>
+
       <div className="PageTop">
         <Button
           variant="outlined"

@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import { getArtistList } from '../../../../apis/artistActions';
 import './ArtistBandPage.css';
 
@@ -9,6 +10,10 @@ function ArtistBandPage({artistList}) {
 
   return (
     <div className="ArtistBandPage">
+      <Typography variant="h1">
+        Browse bands
+      </Typography>
+
       <p>There should be bands here</p>
     </div>
   );
