@@ -4,7 +4,7 @@ import './ArtistAllPage.css';
 import { useContext } from 'react'
 import { DatabaseContext } from '../../../../DatabaseContext'
 
-function ArtistAllPage({}) {
+export default function ArtistAllPage() {
   const data = useContext(DatabaseContext);
   if ( data.artistList.length === 0 ) {
     console.log("Updating ArtistList...");
@@ -19,5 +19,3 @@ function ArtistAllPage({}) {
     </div>
   );
 }
-
-export default ArtistAllPage;
