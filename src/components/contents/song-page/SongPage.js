@@ -1,14 +1,13 @@
 import { Typography } from '@material-ui/core';
+import { useContext } from 'react';
 import { getSongList } from '../../../apis/songActions';
+import { DatabaseContext } from '../../../DatabaseContext';
 import './SongPage.css';
 
-function SongPage({songList}) {
-
-  if (songList.get === "test") {
-    getSongList(songList);
-  }
-  else {
-    console.log("Updated Songs List", songList.get);
+export default function SongPage() {
+  const data = useContext(DatabaseContext);
+  if (data.songList.length === 0) {
+    reloadSongs(data);
   }
 
   return (
@@ -22,4 +21,6 @@ function SongPage({songList}) {
   );
 }
 
-export default SongPage;
+function reloadSongs(data) {
+  getSongList(data);
+}

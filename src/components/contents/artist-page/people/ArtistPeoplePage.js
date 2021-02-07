@@ -1,11 +1,13 @@
 import { Typography } from '@material-ui/core';
+import { useContext } from 'react';
 import { getArtistList } from '../../../../apis/artistActions';
+import { DatabaseContext } from '../../../../DatabaseContext'
 import './ArtistPeoplePage.css';
 
-function ArtistPeoplePage({artistList}) {
-  // This isn't really working yet.
-  if (artistList.get == null) {
-    getArtistList(artistList);
+export default function ArtistPeoplePage() {
+  const data = useContext(DatabaseContext);
+  if (data.artistList.length === 0) {
+    reloadArtists(data);
   }
 
   return (
@@ -19,4 +21,6 @@ function ArtistPeoplePage({artistList}) {
   );
 }
 
-export default ArtistPeoplePage;
+function reloadArtists(data) {
+  getArtistList(data);
+}

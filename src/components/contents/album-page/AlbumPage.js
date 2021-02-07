@@ -1,16 +1,14 @@
 import { Typography } from '@material-ui/core';
+import { useContext } from 'react';
 import { getAlbumList } from '../../../apis/albumActions';
+import { DatabaseContext } from '../../../DatabaseContext';
 import './AlbumPage.css';
 
-function AlbumPage({albumList}) {
-
-  if (albumList.get === "test") {
-    getAlbumList(albumList);
+function AlbumPage() {
+  const data = useContext(DatabaseContext);
+  if (data.albumList.length === 0) {
+    reloadAlbums(data);
   }
-  else {
-    console.log("Updated Albums List", albumList.get);
-  }
-
 
   return (
     <div className="AlbumPage">
@@ -23,3 +21,7 @@ function AlbumPage({albumList}) {
 }
 
 export default AlbumPage;
+
+function reloadAlbums(data) {
+  getAlbumList(data);
+}
