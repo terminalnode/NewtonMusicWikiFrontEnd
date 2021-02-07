@@ -28,7 +28,7 @@ export default function NewtonAppBar() {
           </IconButton>
         </Link>
 
-        <Link to="/artists" className="Link">
+        <Link to="/artists/all" className="Link">
           <IconButton>
             <RadioIcon /> Performers
           </IconButton>

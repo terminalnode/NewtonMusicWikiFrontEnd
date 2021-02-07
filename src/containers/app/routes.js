@@ -7,11 +7,7 @@ import AlbumPage from '../../components/contents/album-page/AlbumPage';
 import SongPage from '../../components/contents/song-page/SongPage';
 
 export const routes = [
-  <Route path="/">
-      <HomePage />
-  </Route>,
-
-  <Route path="/artists">
+  <Route path="/artists/all">
     <ArtistsPage />
   </Route>,
 
@@ -29,5 +25,10 @@ export const routes = [
 
   <Route path="/songs">
     <SongPage />
-  </Route>
+  </Route>,
+
+// The switch will match the first route it hits, therefor this needs to be last
+  <Route path="/">
+      <HomePage />
+  </Route>,
 ];
