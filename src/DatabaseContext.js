@@ -7,16 +7,19 @@ export const DatabaseProvider = ({ children }) => {
   const [artistList, setArtistList] = useState([]);
   const [songList, setSongList] = useState([]);
   const [albumList, setAlbumList] = useState([]);
+  const [artistFetchType, setArtistFetchType] = useState([]);
 
   return (
     <DatabaseContext.Provider
       value={{
         artistList,
+        artistFetchType,
         songList,
         albumList,
         setArtistList,
+        setArtistFetchType,
         setSongList,
-        setAlbumList
+        setAlbumList,
       }}
     >
       {children}

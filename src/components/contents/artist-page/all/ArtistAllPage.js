@@ -7,7 +7,7 @@ import { Button, Typography } from '@material-ui/core';
 
 export default function ArtistAllPage() {
   const data = useContext(DatabaseContext);
-  if (data.artistList.length === 0) {
+  if (data.artistFetchType !== "ALL") {
     reloadArtists(data);
   }
 

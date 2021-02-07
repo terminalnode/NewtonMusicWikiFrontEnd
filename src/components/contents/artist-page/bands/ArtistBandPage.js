@@ -1,12 +1,13 @@
-import { Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import { useContext } from 'react';
 import { DatabaseContext } from '../../../../DatabaseContext'
-import { getArtistList } from '../../../../apis/artistActions';
+import { getBandArtistList } from '../../../../apis/artistActions';
 import './ArtistBandPage.css';
+import ArtistList from '../artist-list/ArtistList';
 
 export default function ArtistBandPage() {
   const data = useContext(DatabaseContext);
-  if (data.artistList.length === 0) {
+  if (data.artistFetchType !== "BAND") {
     reloadArtists(data);
   }
 
@@ -16,11 +17,22 @@ export default function ArtistBandPage() {
         Browse bands
       </Typography>
 
-      <p>There should be bands here</p>
+      <div className="PageTop">
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={ () => reloadArtists(data) }>
+            Refresh
+        </Button>
+      </div>
+
+      <div className="PageBottom">
+        <ArtistList artists={ data.artistList } />
+      </div>
     </div>
   );
 }
 
 function reloadArtists(data) {
-  getArtistList(data);
+  getBandArtistList(data);
 }
