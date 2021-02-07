@@ -2,7 +2,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { amber, deepPurple, orange } from '@material-ui/core/colors';
 
 export const themeNewton = createMuiTheme({
-  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
   palette: {
     background: {
       paper: '#333',

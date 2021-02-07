@@ -14,7 +14,7 @@ function App() {
         <CssBaseline />
         <NewtonAppBar />
 
-        <Container>
+        <Container className="ContentContainer">
           <Switch>
             { routes }
           </Switch>
