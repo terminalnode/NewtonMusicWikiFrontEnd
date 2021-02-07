@@ -4,7 +4,7 @@ import { DataGrid } from '@material-ui/data-grid';
 const columns = [
   { field: 'id', headerName: 'Id', width: 80 },
   { field: 'name', headerName: 'Name', width: 250 },
-  { field: 'albums', headerName: 'Albums', width: 100 },
+  { field: 'albums', headerName: 'Albums', width: 110 },
   { field: 'artists', headerName: 'Artists', width: 130 },
 ];
 

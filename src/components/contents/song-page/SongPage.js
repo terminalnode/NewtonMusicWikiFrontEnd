@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import { useContext } from 'react';
 import { getSongList } from '../../../apis/songActions';
 import { DatabaseContext } from '../../../DatabaseContext';
@@ -16,6 +16,15 @@ export default function SongPage() {
       <Typography variant="h1">
         Browse songs
       </Typography>
+
+      <div className="PageTop">
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={ () => reloadSongs(data) }>
+            Refresh
+          </Button>
+      </div>
 
       <div className="PageBottom">
         <SongList songs={ data.songList } />
