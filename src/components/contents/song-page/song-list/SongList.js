@@ -1,26 +1,25 @@
-import './AlbumList.css';
+import './SongList.css';
 import { DataGrid } from '@material-ui/data-grid';
 
 const columns = [
   { field: 'id', headerName: 'Id', width: 80 },
   { field: 'name', headerName: 'Name', width: 250 },
-  { field: 'songs', headerName: 'Songs', width: 100 },
+  { field: 'albums', headerName: 'Albums', width: 100 },
   { field: 'artists', headerName: 'Artists', width: 130 },
 ];
 
-function mapAlbumToRow(albums) {
-  return albums.map(x => {
-    const album = {};
-    album.id = x.id;
-    album.name = x.name;
-    album.songs = x.songs === null ? "n/a" : x.songs.length;
-    album.artists = mapAlbumArtists(x.artists);
-
-    return album;
+function mapSongToRow(songs) {
+  return songs.map(x => {
+    return {
+        id: x.id,
+        name: x.name,
+        albums: x.albums === null ? "n/a" : x.albums.length,
+        artists: mapSongArtists(x.artists),
+    };
   })
 }
 
-function mapAlbumArtists(artists) {
+function mapSongArtists(artists) {
     if (artists === null || artists.length === 0) {
         return "none";
     }
@@ -30,14 +29,14 @@ function mapAlbumArtists(artists) {
         .join(", ");
 }
 
-export default function AlbumList({albums}) {
+export default function SongList({songs}) {
   return (
     <DataGrid
       autoHeight
       checkboxSelection
       color="primary"
       columns={ columns }
-      rows={ mapAlbumToRow(albums) }
+      rows={ mapSongToRow(songs) }
       pageSize={ 10 }
     />
   );
