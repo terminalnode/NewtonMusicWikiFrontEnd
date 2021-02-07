@@ -2,6 +2,7 @@ import { Typography } from '@material-ui/core';
 import { useContext } from 'react';
 import { getAlbumList } from '../../../apis/albumActions';
 import { DatabaseContext } from '../../../DatabaseContext';
+import AlbumList from './album-list/AlbumList';
 import './AlbumPage.css';
 
 function AlbumPage() {
@@ -15,7 +16,10 @@ function AlbumPage() {
       <Typography variant="h1">
         Browse albums
       </Typography>
-      <p>There should be albums here</p>
+
+      <div className="PageBottom">
+        <AlbumList albums={ data.albumList } />
+      </div>
     </div>
   );
 }
