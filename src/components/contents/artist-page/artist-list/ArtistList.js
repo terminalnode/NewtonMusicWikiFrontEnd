@@ -1,5 +1,8 @@
 import './ArtistList.css';
 import { DataGrid } from '@material-ui/data-grid';
+import { createMuiTheme, ThemeProvider, withStyles, withTheme } from '@material-ui/core';
+import { blue, brown, green, pink, yellow } from '@material-ui/core/colors';
+import { amber, deepPurple} from '@material-ui/core/colors';
 
 const columns = [
   { field: 'id', headerName: 'Id', width: 80 },
@@ -31,15 +34,41 @@ function mapArtistToRow(artists) {
   })
 }
 
-export default function ArtistList({artists}) {
+
+
+
+/*  function ArtistList({artists}) {
   return (
-    <DataGrid
-      autoHeight
-      checkboxSelection
-      color="primary"
-      columns={ columns }
-      rows={ mapArtistToRow(artists) }
-      pageSize={ 10 }
-    />
+      <DataGrid
+        autoHeight
+        checkboxSelection
+        color="primary"
+        columns={ columns }
+        rows={ mapArtistToRow(artists) }
+        pageSize={ 10 }
+      />
   );
 }
+ */
+
+const ArtistListWithStyles = (({ artists, props }) => {
+
+  const { classes } = props;
+  
+  return (
+    <DataGrid
+    className = {classes.artistDataGrid}
+    autoHeight
+    checkboxSelection
+    color="primary"
+    columns={ columns }
+    rows={ mapArtistToRow(artists) }
+    pageSize={ 10 }
+    />)
+});
+
+  const styles = theme => ({
+    artistDataGrid: {margin: theme.spacing(2)},
+    })
+
+export default withStyles(styles, {withTheme: true }) (ArtistListWithStyles);
