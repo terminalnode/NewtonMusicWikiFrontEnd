@@ -1,5 +1,4 @@
 import './HomePage.css';
-import { Typography } from '@material-ui/core';
 import { useContext } from 'react';
 import { DatabaseContext } from '../../../DatabaseContext';
 

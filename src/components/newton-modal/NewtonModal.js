@@ -1,4 +1,4 @@
-import { Backdrop, Box, Button, Container, makeStyles, Modal, Typography } from "@material-ui/core";
+import { Backdrop, makeStyles, Modal } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     modal: {

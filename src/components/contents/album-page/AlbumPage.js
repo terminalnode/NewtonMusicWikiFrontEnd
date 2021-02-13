@@ -1,4 +1,4 @@
-import { Button, Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { useContext } from 'react';
 import { getAlbumList } from '../../../apis/albumActions';
 import { DatabaseContext } from '../../../DatabaseContext';

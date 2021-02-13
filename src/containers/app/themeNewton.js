@@ -4,18 +4,14 @@ import { amber, deepPurple, orange } from '@material-ui/core/colors';
 export const themeNewton = createMuiTheme({
   palette: {
     background: {
-      paper: '#333',
-      default: "#222",
+      paper: '#223',
+      default: "#112",
     },
     primary: {
       main: orange[500],
-      contrastText: deepPurple[900],
-      background: deepPurple[500],
     },
     secondary: {
       main: amber[500],
-      contrastText: deepPurple[900],
-      background: deepPurple[500],
     },
     text: {
       primary: amber[500],

@@ -3,7 +3,7 @@ import ArtistList from '../artist-list/ArtistList';
 import './ArtistAllPage.css';
 import { useContext, useState } from 'react'
 import { DatabaseContext } from '../../../../DatabaseContext'
-import { Button, Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import CreateArtist from '../../../create-artist/CreateArtist';
 import NewtonModal from '../../../newton-modal/NewtonModal';
 
