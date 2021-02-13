@@ -1,5 +1,5 @@
 import './NewtonAppBar.css';
-import { AppBar, Divider, Drawer, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, makeStyles, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Divider, Drawer, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, makeStyles, Toolbar, Typography, useTheme } from '@material-ui/core';
 import AlbumIcon from '@material-ui/icons/Album';
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 import FaceIcon from '@material-ui/icons/Face';
@@ -50,6 +50,7 @@ export default function NewtonAppBar({ window, children, title }) {
   // https://material-ui.com/components/material-icons/
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
+  const theme = useTheme();
   const container = window !== undefined ? () => window().document.body : undefined;
 
   const toggleDrawer = () => {
@@ -122,11 +123,13 @@ export default function NewtonAppBar({ window, children, title }) {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar} >
         <Toolbar variant="dense">
-          <IconButton
-            onClick={toggleDrawer}
-          >
-            <MenuIcon />
-          </IconButton>
+          <Hidden smUp implementation="css">
+            <IconButton
+              onClick={toggleDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
           <Typography variant="h6" noWrap>
             { title }
           </Typography>
@@ -137,12 +140,24 @@ export default function NewtonAppBar({ window, children, title }) {
           <Drawer
             container={ container }
             variant="temporary"
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
             onClose={toggleDrawer}
             ModalProps={{ keepMounted: true }} // better mobile performance
             classes= {{ paper:classes.drawerPaper }}
           >
             { drawer }
+          </Drawer>
+        </Hidden>
+        <Hidden xsDown implementation="css">
+          <Drawer
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            variant="permanent"
+            open
+          >
+            {drawer}
           </Drawer>
         </Hidden>
       </nav>
