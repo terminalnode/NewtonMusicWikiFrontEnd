@@ -1,5 +1,6 @@
 import './SongList.css';
 import NewtonDataGrid from '../../../material/newton-data-grid/NewtonDataGrid';
+import { useHistory } from 'react-router-dom';
 
 const columns = [
   { field: 'name', headerName: 'Name', width: 250 },
@@ -28,12 +29,18 @@ function mapSongArtists(artists) {
         .join(", ");
 }
 
+function rowClick(row, history) {
+  history.push(`/songs/${row.rowIds[0]}`);
+}
+
 export default function SongList({songs}) {
+  const history = useHistory();
+
   return (
     <NewtonDataGrid
-      checkboxSelection
       columns={ columns }
       rows={ mapSongToRow(songs) }
+      selectAction={ (newSelection) => rowClick(newSelection, history) }
     />
   );
 }

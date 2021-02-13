@@ -5,8 +5,15 @@ import ArtistBandPage from '../../components/contents/artist-page/bands/ArtistBa
 import ArtistPeoplePage from '../../components/contents/artist-page/people/ArtistPeoplePage';
 import AlbumPage from '../../components/contents/album-page/AlbumPage';
 import SongPage from '../../components/contents/song-page/SongPage';
+import ArtistDisplay from "../../components/contents/artist-page/artist-display/ArtistDisplay";
+import AlbumDisplay from "../../components/contents/album-page/album-display/AlbumDisplay";
+import SongDisplay from "../../components/contents/song-page/song-display/SongDisplay";
 
 export const routes = [
+  <Route path="/artists/:id">
+    <ArtistDisplay />
+  </Route>,
+
   <Route path="/artists/all">
     <ArtistsPage />
   </Route>,
@@ -19,8 +26,16 @@ export const routes = [
     <ArtistBandPage />
   </Route>,
 
+  <Route path="/albums/:id">
+    <AlbumDisplay />
+  </Route>,
+
   <Route path="/albums">
     <AlbumPage />
+  </Route>,
+
+  <Route path="/songs/:id">
+    <SongDisplay />
   </Route>,
 
   <Route path="/songs">

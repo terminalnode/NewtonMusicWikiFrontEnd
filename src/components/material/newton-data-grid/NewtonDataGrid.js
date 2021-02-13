@@ -12,7 +12,8 @@ const styles = theme => ({
 function NewtonDataGrid({
   columns,
   rows,
-  classes
+  classes,
+  selectAction,
 }) {
   return (
     <DataGrid
@@ -21,6 +22,7 @@ function NewtonDataGrid({
       columns={ columns }
       rows={ rows }
       pageSize={ 10 }
+      onSelectionChange={ selectAction || (() => console.log("NewtonDataGrid: no selectAction defined")) }
     />
   );
 }

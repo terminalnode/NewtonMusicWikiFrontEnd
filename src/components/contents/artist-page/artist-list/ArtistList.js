@@ -4,6 +4,7 @@ import FaceIcon from '@material-ui/icons/Face';
 import GroupIcon from '@material-ui/icons/Group';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import { Typography } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 const columns = [
   { field: 'name', headerName: 'Performer', width: 250, renderCell: mapArtistNameWithIcon },
@@ -61,12 +62,18 @@ function mapArtistToRow(artists) {
   })
 }
 
+function rowClick(row, history) {
+  history.push(`/artists/${row.rowIds[0]}`);
+}
+
 export default function ArtistList({artists}) {
-  console.log(artists);
+  const history = useHistory();
+
   return (
       <NewtonDataGrid
         columns={ columns }
         rows={ mapArtistToRow(artists) }
+        selectAction={ (newSelection) => rowClick(newSelection, history) }
       />
   );
 }
