@@ -1,5 +1,19 @@
 import './NewtonAppBar.css';
-import { AppBar, Divider, Drawer, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, makeStyles, Toolbar, Typography, useTheme } from '@material-ui/core';
+import {
+  AppBar,
+  Divider,
+  Drawer,
+  Hidden,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  makeStyles,
+  Toolbar,
+  Typography,
+  useTheme
+} from '@material-ui/core';
 import AlbumIcon from '@material-ui/icons/Album';
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 import FaceIcon from '@material-ui/icons/Face';
@@ -63,7 +77,7 @@ export default function NewtonAppBar({ window, children, title }) {
         <List>
           <Link to="/" className="Link">
             <ListItem>
-              <ListItemIcon><HomeIcon /></ListItemIcon>
+              <ListItemIcon><HomeIcon color='primary' /></ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
@@ -74,21 +88,21 @@ export default function NewtonAppBar({ window, children, title }) {
         <List>
           <Link to="/artists/all" className="Link">
             <ListItem>
-              <ListItemIcon><RadioIcon /></ListItemIcon>
+              <ListItemIcon><RadioIcon color='primary' /></ListItemIcon>
               <ListItemText primary="Performers" />
             </ListItem>
           </Link>
 
           <Link to="/artists/people" className="Link">
             <ListItem>
-              <ListItemIcon><FaceIcon /></ListItemIcon>
+              <ListItemIcon><FaceIcon color='primary' /></ListItemIcon>
               <ListItemText primary="Artists" />
             </ListItem>
           </Link>
 
           <Link to="/artists/bands" className="Link">
             <ListItem>
-              <ListItemIcon><GroupIcon /></ListItemIcon>
+              <ListItemIcon><GroupIcon color='primary' /></ListItemIcon>
               <ListItemText primary="Bands" />
             </ListItem>
           </Link>
@@ -99,7 +113,7 @@ export default function NewtonAppBar({ window, children, title }) {
         <List>
           <Link to="/albums" className="Link">
             <ListItem>
-              <ListItemIcon><AlbumIcon /></ListItemIcon>
+              <ListItemIcon><AlbumIcon color='primary' /></ListItemIcon>
               <ListItemText primary="Albums" />
             </ListItem>
           </Link>
@@ -110,22 +124,21 @@ export default function NewtonAppBar({ window, children, title }) {
         <List>
           <Link to="/songs" className="Link">
             <ListItem>
-              <ListItemIcon><AudiotrackIcon /></ListItemIcon>
+              <ListItemIcon><AudiotrackIcon color='primary' /></ListItemIcon>
               <ListItemText primary="Songs" />
             </ListItem>
           </Link>
         </List>
-
       </div>
   );
 
   return (
-    <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar} >
+    <div className={ classes.root }>
+      <AppBar position="fixed" className={ classes.appBar } >
         <Toolbar variant="dense">
           <Hidden smUp implementation="css">
             <IconButton
-              onClick={toggleDrawer}
+              onClick={ toggleDrawer }
             >
               <MenuIcon />
             </IconButton>
@@ -135,16 +148,17 @@ export default function NewtonAppBar({ window, children, title }) {
           </Typography>
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer}>
+
+      <nav className={ classes.drawer }>
         <Hidden smUp implementation="css">
           <Drawer
             container={ container }
             variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={toggleDrawer}
+            anchor={ theme.direction === 'rtl' ? 'right' : 'left' }
+            open={ mobileOpen }
+            onClose={ toggleDrawer }
             ModalProps={{ keepMounted: true }} // better mobile performance
-            classes= {{ paper:classes.drawerPaper }}
+            classes= {{ paper: classes.drawerPaper }}
           >
             { drawer }
           </Drawer>
@@ -157,12 +171,13 @@ export default function NewtonAppBar({ window, children, title }) {
             variant="permanent"
             open
           >
-            {drawer}
+            { drawer }
           </Drawer>
         </Hidden>
       </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
+
+      <main className={ classes.content }>
+        <div className={ classes.toolbar } />
         { children }
       </main>
     </div>
