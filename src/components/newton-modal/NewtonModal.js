@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         maxHeight: '50%',
         maxWidth: '50%',
-        //transform: 'translate(50%, 50%)'
     }
 }));
 
