@@ -1,21 +1,51 @@
 import './ArtistList.css';
 import NewtonDataGrid from '../../../material/newton-data-grid/NewtonDataGrid';
+import FaceIcon from '@material-ui/icons/Face';
+import GroupIcon from '@material-ui/icons/Group';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import { Typography } from '@material-ui/core';
 
 const columns = [
-  { field: 'id', headerName: 'Id', width: 80 },
-  { field: 'name', headerName: 'Name', width: 200 },
-  { field: 'type', headerName: 'Type', width: 90 },
-  { field: 'longitude', headerName: 'Longitude', width: 130 },
-  { field: 'latitude', headerName: 'Latitude', width: 130 },
+  { field: 'name', headerName: 'Performer', width: 250, renderCell: mapArtistNameWithIcon },
+  { field: 'longitude', headerName: 'Long.', width: 95, renderCell: trimDecimals },
+  { field: 'latitude', headerName: 'Lat.', width: 95, renderCell: trimDecimals },
 ];
+
+function trimDecimals(params) {
+  switch (params.value) {
+    case null:
+      return <HelpOutlineIcon />;
+    default:
+      return <Typography>{params.value.toFixed(3)}</Typography>;
+  }
+}
+
+function mapArtistNameWithIcon(params) {
+  return (
+    <div>
+      { mapArtistTypeToIcon(params.row['type']) } { params.value }
+    </div>
+  );
+}
+
+function mapArtistTypeToIcon(type) {
+  switch (type) {
+    case "Band":
+      return <GroupIcon />;
+    case "Person":
+      return <FaceIcon />;
+    default:
+      return <HelpOutlineIcon />;
+  }
+}
 
 function mapArtistToRow(artists) {
   return artists.map(x => {
     const artist = {};
     artist.id = x.id;
     artist.name = x.name;
-    artist.latitude = x.latitude === null ? "n/a" : x.latitude;
-    artist.longitude = x.longitude === null ? "n/a" : x.longitude;
+    artist.latitude = x.latitude;
+    artist.longitude = x.longitude;
 
     if (x.artistType === null) {
       artist.type = "n/a";
@@ -32,9 +62,9 @@ function mapArtistToRow(artists) {
 }
 
 export default function ArtistList({artists}) {
+  console.log(artists);
   return (
       <NewtonDataGrid
-        checkboxSelection
         columns={ columns }
         rows={ mapArtistToRow(artists) }
       />

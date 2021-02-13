@@ -10,7 +10,6 @@ const styles = theme => ({
 })
 
 function NewtonDataGrid({
-  checkboxSelection,
   columns,
   rows,
   classes
@@ -19,7 +18,6 @@ function NewtonDataGrid({
     <DataGrid
       autoHeight
       className= { classes.newtonDataGrid }
-      checkboxSelection={ checkboxSelection }
       columns={ columns }
       rows={ rows }
       pageSize={ 10 }

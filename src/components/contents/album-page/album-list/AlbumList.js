@@ -2,7 +2,6 @@ import './AlbumList.css';
 import NewtonDataGrid from '../../../material/newton-data-grid/NewtonDataGrid';
 
 const columns = [
-  { field: 'id', headerName: 'Id', width: 80 },
   { field: 'name', headerName: 'Name', width: 250 },
   { field: 'songs', headerName: 'Songs', width: 100 },
   { field: 'artists', headerName: 'Artists', width: 130 },
