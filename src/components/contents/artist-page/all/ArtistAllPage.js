@@ -1,11 +1,14 @@
 import { getArtistList } from '../../../../apis/artistActions';
 import ArtistList from '../artist-list/ArtistList';
 import './ArtistAllPage.css';
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { DatabaseContext } from '../../../../DatabaseContext'
 import { Button, Typography } from '@material-ui/core';
+import CreateArtist from '../../../create-artist/CreateArtist';
+import NewtonModal from '../../../newton-modal/NewtonModal';
 
-export default function ArtistAllPage() {
+export default function ArtistAllPage() { 
+  const [ showCreateWindow, setShowCreateWindow ] = useState(false);
   const data = useContext(DatabaseContext);
   if (data.artistFetchType !== "ALL") {
     reloadArtists(data);
@@ -17,13 +20,27 @@ export default function ArtistAllPage() {
         Browse all artists
       </Typography>
 
+      <NewtonModal
+        open={ showCreateWindow }
+        onClose={ () => setShowCreateWindow(false) }
+      >
+        <CreateArtist />
+      </NewtonModal>
+
       <div className="PageTop">
         <Button
           variant="outlined"
           color="primary"
           onClick={ () => reloadArtists(data) }>
             Refresh
-          </Button>
+        </Button>
+
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={ () => setShowCreateWindow(true) }>
+            Create
+        </Button>
       </div>
 
       <div className="PageBottom">
