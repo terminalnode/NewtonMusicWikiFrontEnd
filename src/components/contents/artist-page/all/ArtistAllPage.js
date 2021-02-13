@@ -10,16 +10,13 @@ import NewtonModal from '../../../newton-modal/NewtonModal';
 export default function ArtistAllPage() { 
   const [ showCreateWindow, setShowCreateWindow ] = useState(false);
   const data = useContext(DatabaseContext);
+  data.setPageTitle("Browse all artists");
   if (data.artistFetchType !== "ALL") {
     reloadArtists(data);
   }
 
   return (
     <div className="ArtistAllPage">
-      <Typography variant="h1">
-        Browse all artists
-      </Typography>
-
       <NewtonModal
         open={ showCreateWindow }
         onClose={ () => setShowCreateWindow(false) }

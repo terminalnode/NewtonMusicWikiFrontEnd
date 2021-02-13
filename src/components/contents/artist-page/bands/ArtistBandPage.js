@@ -7,16 +7,13 @@ import ArtistList from '../artist-list/ArtistList';
 
 export default function ArtistBandPage() {
   const data = useContext(DatabaseContext);
+  data.setPageTitle("Browse bands");
   if (data.artistFetchType !== "BAND") {
     reloadArtists(data);
   }
 
   return (
     <div className="ArtistBandPage">
-      <Typography variant="h1">
-        Browse bands
-      </Typography>
-
       <div className="PageTop">
         <Button
           variant="outlined"

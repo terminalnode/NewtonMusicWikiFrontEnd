@@ -7,16 +7,13 @@ import './SongPage.css';
 
 export default function SongPage() {
   const data = useContext(DatabaseContext);
+  data.setPageTitle("Browse songs");
   if (data.songList.length === 0) {
     reloadSongs(data);
   }
 
   return (
     <div className="SongPage">
-      <Typography variant="h1">
-        Browse songs
-      </Typography>
-
       <div className="PageTop">
         <Button
           variant="outlined"

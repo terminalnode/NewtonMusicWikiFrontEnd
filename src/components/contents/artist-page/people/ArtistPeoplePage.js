@@ -7,16 +7,13 @@ import './ArtistPeoplePage.css';
 
 export default function ArtistPeoplePage() {
   const data = useContext(DatabaseContext);
+  data.setPageTitle("Browse individual artists");
   if (data.artistFetchType !== "PERSON") {
     reloadArtists(data);
   }
 
   return (
     <div className="ArtistPeoplePage">
-      <Typography variant="h1">
-        Browse individual artists
-      </Typography>
-
       <div className="PageTop">
         <Button
           variant="outlined"

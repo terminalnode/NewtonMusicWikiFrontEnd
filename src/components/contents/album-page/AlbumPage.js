@@ -7,16 +7,13 @@ import './AlbumPage.css';
 
 function AlbumPage() {
   const data = useContext(DatabaseContext);
+  data.setPageTitle("Browse albums");
   if (data.albumList.length === 0) {
     reloadAlbums(data);
   }
 
   return (
     <div className="AlbumPage">
-      <Typography variant="h1">
-        Browse albums
-      </Typography>
-
       <div className="PageTop">
         <Button
           variant="outlined"

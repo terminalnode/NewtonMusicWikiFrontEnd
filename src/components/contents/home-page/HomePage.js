@@ -1,13 +1,14 @@
 import './HomePage.css';
 import { Typography } from '@material-ui/core';
+import { useContext } from 'react';
+import { DatabaseContext } from '../../../DatabaseContext';
 
 function HomePage() {
+  const data = useContext(DatabaseContext);
+  data.setPageTitle("Newton Music Wiki");
+
   return (
     <div className="HomePage">
-      <Typography variant="h1">
-        Welcome to Newton Music Wiki
-      </Typography>
-
       <p>
         Newton Music Wiki (NMW) is a database, editable by anyone, for music data.
       </p>
