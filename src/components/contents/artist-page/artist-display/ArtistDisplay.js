@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleArtist } from "../../../../apis/artistActions";
 import { DatabaseContext } from "../../../../DatabaseContext";
+import GoogleMapReact from 'google-map-react';
 
 export default function ArtistDisplay() {
   const [ lastArtistId, setLastArtistId ] = useState(null);
@@ -31,14 +32,37 @@ function displayArtistMissing(id) {
 }
 
 function displayArtist(artist) {
-  // artist.longitude (can be null)
-  // artist.latitude (can be null)
   // artists.album (list)
   // artist.songs (list)
   return (
     <Container>
-      <Typography variant='h1'>{artist.name}</Typography>
+      <Typography variant='h1'>{artist.name} (#{artist.id})</Typography>
       <Typography>{artist.description}</Typography>
+      {getMap(artist.longitude, artist.latitude)}
     </Container>
+  );
+}
+
+function getMap(longitude, latitude) {
+  const MapDiv = ({children}) => {
+    return (
+      <div style={{height: '300px', width: '300px'}}>
+        {children}
+      </div>
+    );
+  }
+
+  if (!longitude || !latitude) {
+    return <MapDiv>Geographic location unknown</MapDiv>
+  }
+
+  return (
+    <MapDiv>
+      <GoogleMapReact
+        bootstrapURLKeys={{ /* empty object */ }}
+        center={[ latitude, longitude ]}
+        zoom={ 3 }
+      / >
+    </MapDiv>
   );
 }
