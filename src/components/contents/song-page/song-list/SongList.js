@@ -1,5 +1,5 @@
 import './SongList.css';
-import { DataGrid } from '@material-ui/data-grid';
+import NewtonDataGrid from '../../../material/newton-data-grid/NewtonDataGrid';
 
 const columns = [
   { field: 'id', headerName: 'Id', width: 80 },
@@ -31,13 +31,10 @@ function mapSongArtists(artists) {
 
 export default function SongList({songs}) {
   return (
-    <DataGrid
-      autoHeight
+    <NewtonDataGrid
       checkboxSelection
-      color="primary"
       columns={ columns }
       rows={ mapSongToRow(songs) }
-      pageSize={ 10 }
     />
   );
 }

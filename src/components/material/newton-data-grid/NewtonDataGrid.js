@@ -1,20 +1,30 @@
 import './NewtonDataGrid.css';
+import { withStyles } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 
-export default function NewtonDataGrid({
+const styles = theme => ({
+  newtonDataGrid: {
+    margin: theme.spacing(1),
+    background: '#333',
+  },
+})
+
+function NewtonDataGrid({
   checkboxSelection,
   columns,
   rows,
-  pageSize
+  classes
 }) {
   return (
-    <div className="NewtonDataGrid">
-        <DataGrid
-          checkboxSelection={ checkboxSelection }
-          columns={ columns }
-          rows={ rows }
-          pageSize={ pageSize }
-        />
-    </div>
+    <DataGrid
+      autoHeight
+      className= { classes.newtonDataGrid }
+      checkboxSelection={ checkboxSelection }
+      columns={ columns }
+      rows={ rows }
+      pageSize={ 10 }
+    />
   );
 }
+
+export default withStyles(styles)(NewtonDataGrid);
