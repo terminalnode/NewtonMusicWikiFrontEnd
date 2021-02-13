@@ -10,10 +10,6 @@ import AlbumDisplay from "../../components/contents/album-page/album-display/Alb
 import SongDisplay from "../../components/contents/song-page/song-display/SongDisplay";
 
 export const routes = [
-  <Route path="/artists/:id">
-    <ArtistDisplay />
-  </Route>,
-
   <Route path="/artists/all">
     <ArtistsPage />
   </Route>,
@@ -24,6 +20,10 @@ export const routes = [
 
   <Route path="/artists/bands">
     <ArtistBandPage />
+  </Route>,
+
+  <Route path="/artists/:id">
+    <ArtistDisplay />
   </Route>,
 
   <Route path="/albums/:id">

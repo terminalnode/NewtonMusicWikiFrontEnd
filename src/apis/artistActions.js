@@ -1,5 +1,15 @@
 import endpoint from './endpoint';
 
+export const getSingleArtist = async (data, id) => {
+  await endpoint.get(`/rest/v1/artist/${id}`)
+    .then(resp => {
+      console.log(`Fetched atist ${id}`);
+      console.log(resp.data);
+      data.setSingleArtist(resp.data);
+    })
+    .catch(e => console.log("Error:", e));
+}
+
 export const getArtistList = async (data) => {
   await endpoint.get("/rest/v1/artist")
     .then(resp => {
