@@ -21,7 +21,9 @@ export default function ArtistAllPage() {
         open={ showCreateWindow }
         onClose={ () => setShowCreateWindow(false) }
       >
-        <CreateArtist />
+        <div>
+          <CreateArtist />
+        </div>
       </NewtonModal>
 
       <div className="PageTop">
