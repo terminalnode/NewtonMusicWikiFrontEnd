@@ -10,7 +10,7 @@ export default function NewtonButton({
   return (
     <Button
       className={"NewtonButton"}
-      variant={ variant }
+      variant={ variant || 'outlined' }
       onClick={ action }>
       {text}
     </Button>

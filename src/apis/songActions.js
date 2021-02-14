@@ -17,3 +17,13 @@ export const getSingleSong = async (data, id) => {
     })
     .catch(e => console.log("Error:", e));
 }
+
+export const editThenUpdateSong = async (data, song) => {
+  console.log("edit then update song");
+  await endpoint.post(`/rest/v1/song/edit`, song)
+    .then(resp => {
+      console.log(`Updated song ${song.id}`);
+      data.setSingleSong(resp.data);
+    })
+    .catch(e => console.log("Error:", e));
+}

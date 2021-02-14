@@ -14,11 +14,13 @@ function NewtonDataGrid({
   rows,
   classes,
   selectAction,
+  checkBoxSelection
 }) {
   return (
     <DataGrid
       autoHeight
-      className= { classes.newtonDataGrid }
+      checkboxSelection={ checkBoxSelection }
+      className={ classes.newtonDataGrid }
       columns={ columns }
       rows={ rows }
       pageSize={ 10 }
