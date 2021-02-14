@@ -1,5 +1,5 @@
 import './ArtistDisplay.css';
-import { Container, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleArtist } from "../../../../apis/artistActions";
@@ -37,11 +37,11 @@ function displayArtist(artist) {
   // artists.album (list)
   // artist.songs (list)
   return (
-    <Container>
+    <div>
       <Typography variant='h1'>{artist.name} (#{artist.id})</Typography>
       <Typography>{artist.description}</Typography>
       {getMap(artist.longitude, artist.latitude)}
-    </Container>
+    </div>
   );
 }
 
