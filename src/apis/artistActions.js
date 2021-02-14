@@ -14,24 +14,24 @@ export const getArtistList = async (data) => {
   await endpoint.get("/rest/v1/artist")
     .then(resp => {
       console.log("Fetched artists");
-      data.setArtistList(resp.data.artists);
       data.setArtistFetchType("ALL");
+      data.setArtistList(resp.data.artists);
     })
     .catch(e => console.log("Error:", e));
 }
 
 export const getPersonArtistList = async (data) => {
   if (data.artistFetchType === "ALL") {
-    data.setArtistList(data.artistList.filter(x => x.artistType === "BAND"));
     data.setArtistFetchType("PERSON");
+    data.setArtistList(data.artistList.filter(x => x.artistType === "BAND"));
     return;
   }
 
   await endpoint.get("/rest/v1/artist/type/PERSON")
     .then(resp => {
       console.log("Fetched person artists");
-      data.setArtistList(resp.data.artists);
       data.setArtistFetchType("PERSON");
+      data.setArtistList(resp.data.artists);
     })
     .catch(e => console.log("Error:", e));
 }
@@ -46,8 +46,8 @@ export const getBandArtistList = async (data) => {
   await endpoint.get("/rest/v1/artist/type/BAND")
     .then(resp => {
       console.log("Fetched bands");
-      data.setArtistList(resp.data.artists);
       data.setArtistFetchType("BAND");
+      data.setArtistList(resp.data.artists);
     })
     .catch(e => console.log("Error:", e));
 }

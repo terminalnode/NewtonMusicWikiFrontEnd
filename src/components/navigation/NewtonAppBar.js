@@ -1,7 +1,6 @@
 import './NewtonAppBar.css';
 import {
   AppBar,
-  Box,
   Divider,
   Drawer,
   Hidden,
