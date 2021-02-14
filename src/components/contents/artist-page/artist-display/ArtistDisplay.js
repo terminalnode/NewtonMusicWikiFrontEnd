@@ -9,16 +9,14 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 export default function ArtistDisplay() {
   const [ lastArtistId, setLastArtistId ] = useState(null);
-
   const data = useContext(DatabaseContext);
   const { id } = useParams();
-  data.setPageTitle(`Performer ${id}`);
 
   if (lastArtistId !== id) {
     getSingleArtist(data, id);
     setLastArtistId(id);
+    data.setPageTitle(`Performer ${id}`);
     return displayArtistMissing(id);
-  } else {
   }
 
   console.log(data.singleArtist);

@@ -8,3 +8,12 @@ export const getSongList = async (data) => {
     })
     .catch(e => console.log("Error:", e));
 }
+
+export const getSingleSong = async (data, id) => {
+  await endpoint.get(`/rest/v1/song/${id}`)
+    .then(resp => {
+      console.log(`Fetched song ${id}`);
+      data.setSingleSong(resp.data);
+    })
+    .catch(e => console.log("Error:", e));
+}

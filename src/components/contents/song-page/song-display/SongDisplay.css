@@ -1,0 +1,7 @@
+.ArtistLinkContainer {
+  padding-right: 0.5rem;
+}
+
+.ArtistLink:hover {
+  cursor: pointer;
+}
