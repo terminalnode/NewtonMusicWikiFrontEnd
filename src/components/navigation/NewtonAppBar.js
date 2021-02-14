@@ -1,6 +1,7 @@
 import './NewtonAppBar.css';
 import {
   AppBar,
+  Box,
   Divider,
   Drawer,
   Hidden,
@@ -79,7 +80,7 @@ export default function NewtonAppBar({ window, children, title }) {
           <Link to="/" className="Link">
             <ListItem>
               <ListItemIcon><HomeIcon color='primary' /></ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText secondary="Home" />
             </ListItem>
           </Link>
         </List>
@@ -90,21 +91,21 @@ export default function NewtonAppBar({ window, children, title }) {
           <Link to="/artists/all" className="Link">
             <ListItem>
               <ListItemIcon><RadioIcon color='primary' /></ListItemIcon>
-              <ListItemText primary="Performers" />
+              <ListItemText secondary="Performers" />
             </ListItem>
           </Link>
 
           <Link to="/artists/people" className="Link">
             <ListItem>
               <ListItemIcon><FaceIcon color='primary' /></ListItemIcon>
-              <ListItemText primary="Artists" />
+              <ListItemText secondary="Artists" />
             </ListItem>
           </Link>
 
           <Link to="/artists/bands" className="Link">
             <ListItem>
               <ListItemIcon><GroupIcon color='primary' /></ListItemIcon>
-              <ListItemText primary="Bands" />
+              <ListItemText secondary="Bands" />
             </ListItem>
           </Link>
         </List>
@@ -115,7 +116,7 @@ export default function NewtonAppBar({ window, children, title }) {
           <Link to="/albums" className="Link">
             <ListItem>
               <ListItemIcon><AlbumIcon color='primary' /></ListItemIcon>
-              <ListItemText primary="Albums" />
+              <ListItemText secondary="Albums" />
             </ListItem>
           </Link>
         </List>
@@ -126,7 +127,7 @@ export default function NewtonAppBar({ window, children, title }) {
           <Link to="/songs" className="Link">
             <ListItem>
               <ListItemIcon><AudiotrackIcon color='primary' /></ListItemIcon>
-              <ListItemText primary="Songs" />
+              <ListItemText secondary="Songs" />
             </ListItem>
           </Link>
         </List>
