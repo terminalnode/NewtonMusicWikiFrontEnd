@@ -3,7 +3,7 @@ import NewtonDataGrid from '../../../material/newton-data-grid/NewtonDataGrid';
 import FaceIcon from '@material-ui/icons/Face';
 import GroupIcon from '@material-ui/icons/Group';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import { Typography } from '@material-ui/core';
+import { Tooltip, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 const columns = [
@@ -15,7 +15,10 @@ const columns = [
 function trimDecimals(params) {
   switch (params.value) {
     case null:
-      return <HelpOutlineIcon />;
+      return (
+        <Tooltip title='Location unknown'>
+          <HelpOutlineIcon aria-label='location-unknown' />
+        </Tooltip>);
     default:
       return <Typography>{params.value.toFixed(3)}</Typography>;
   }
@@ -31,12 +34,21 @@ function mapArtistNameWithIcon(params) {
 
 function mapArtistTypeToIcon(type) {
   switch (type) {
-    case "Band":
-      return <GroupIcon />;
-    case "Person":
-      return <FaceIcon />;
+    case 'Band':
+      return (
+        <Tooltip title='Band'>
+          <GroupIcon aria-label='band-type' />
+        </Tooltip>);
+    case 'Person':
+      return (
+        <Tooltip title='Person'>
+          <FaceIcon aria-label='person-type' />
+        </Tooltip>);
     default:
-      return <HelpOutlineIcon />;
+      return (
+        <Tooltip title='Unknown'>
+          <HelpOutlineIcon aria-label='unknown-type' />
+        </Tooltip>);
   }
 }
 
@@ -50,10 +62,10 @@ function mapArtistToRow(artists) {
 
     if (x.artistType === null) {
       artist.type = "n/a";
-    } else if (x.artistType === "BAND") {
-      artist.type = "Band";
-    } else if (x.artistType === "PERSON") {
-      artist.type = "Person";
+    } else if (x.artistType === 'BAND') {
+      artist.type = 'Band';
+    } else if (x.artistType === 'PERSON') {
+      artist.type = 'Person';
     } else {
       artist.type = x.artistType;
     }
