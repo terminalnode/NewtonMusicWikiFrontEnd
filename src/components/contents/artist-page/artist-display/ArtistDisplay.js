@@ -1,9 +1,11 @@
+import './ArtistDisplay.css';
 import { Container, Typography } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleArtist } from "../../../../apis/artistActions";
 import { DatabaseContext } from "../../../../DatabaseContext";
 import GoogleMapReact from 'google-map-react';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 export default function ArtistDisplay() {
   const [ lastArtistId, setLastArtistId ] = useState(null);
@@ -62,7 +64,16 @@ function getMap(longitude, latitude) {
         bootstrapURLKeys={{ /* empty object */ }}
         center={[ latitude, longitude ]}
         zoom={ 3 }
-      / >
+      >
+        <LocationPin lat={latitude} lng={longitude} text="Here" />
+      </GoogleMapReact>
     </MapDiv>
   );
 }
+
+const LocationPin = ({ text }) => (
+  <div className="pin">
+    <LocationOnIcon />
+    <p className="pin-text">{text}</p>
+  </div>
+)
