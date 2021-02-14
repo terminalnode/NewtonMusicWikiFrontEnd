@@ -1,14 +1,16 @@
 import './SongDisplay.css';
-import { Link, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getSingleSong } from "../../../../apis/songActions";
 import { DatabaseContext } from "../../../../DatabaseContext";
+import { mapArtistTypeToIcon } from "../../artist-page/artist-list/ArtistList";
 
 export default function SongDisplay() {
   const [ lastSongId, setLastSongId ] = useState(null);
   const data = useContext(DatabaseContext);
   const { id } = useParams();
+  const history = useHistory();
 
   if (lastSongId !== id) {
     getSingleSong(data, id);
@@ -17,7 +19,9 @@ export default function SongDisplay() {
     return displaySongMissing(id);
   }
 
-  return displaySong(data.singleSong);
+  return data.singleSong
+    ? displaySong(data.singleSong, history)
+    : displaySongMissing(id);
 }
 
 function displaySongMissing(id) {
@@ -28,25 +32,36 @@ function displaySongMissing(id) {
   );
 }
 
-function displaySong(song) {
+function displaySong(song, history) {
   return (
     <div>
       <Typography variant='h1'>{song.name} (#{song.id})</Typography>
-      <Typography variant='h5'>by {songToArtistList(song)}</Typography>
+      <div className='ArtistLinkList'>
+        {songToArtistList(song, history)}
+      </div>
     </div>
   );
 }
 
-function songToArtistList(song) {
+function songToArtistList(song, history) {
   if (!song.artists || song.artists.length === 0) {
     return "unknown";
   }
 
-  return song.artists.map((x, i) => {
+  return song.artists.map((x) => {
     return (
-      <Link className="ArtistLink" path={`/artists/${x.id}`}>
-        {x.name}{i === song.artists.length - 1 ? null : ', '}
-      </Link>
+      <Box display="flex" flexDirection="row">
+        { mapArtistTypeToIcon(x.type) }
+        <Typography
+          variant='h5'
+          className="ArtistLink"
+          path={`/artists/${x.id}`}
+          onClick={() => history.push(`/artists/${x.id}`)}
+          style={{paddingLeft: '10px'}}
+        >
+          { x.name }
+        </Typography>
+      </Box>
     );
   });
 }

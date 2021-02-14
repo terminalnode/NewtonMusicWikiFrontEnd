@@ -1,7 +1,9 @@
-.ArtistLinkContainer {
-  padding-right: 0.5rem;
+.ArtistLinkList {
+  color: orange;
+  padding-right: 10.5rem;
 }
 
 .ArtistLink:hover {
   cursor: pointer;
+  text-decoration: underline;
 }

@@ -32,23 +32,30 @@ function mapArtistNameWithIcon(params) {
   );
 }
 
-function mapArtistTypeToIcon(type) {
-  switch (type) {
-    case 'Band':
+export function mapArtistTypeToIcon(type) {
+  const unknownType = (
+    <Tooltip title='Unknown'>
+      <HelpOutlineIcon aria-label='unknown-type' />
+    </Tooltip>
+  );
+
+  if (!type) {
+    return unknownType;
+  }
+
+  switch (type.toUpperCase()) {
+    case 'BAND':
       return (
         <Tooltip title='Band'>
           <GroupIcon aria-label='band-type' />
         </Tooltip>);
-    case 'Person':
+    case 'PERSON':
       return (
         <Tooltip title='Person'>
           <FaceIcon aria-label='person-type' />
         </Tooltip>);
     default:
-      return (
-        <Tooltip title='Unknown'>
-          <HelpOutlineIcon aria-label='unknown-type' />
-        </Tooltip>);
+      return unknownType;
   }
 }
 
