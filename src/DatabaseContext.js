@@ -4,15 +4,15 @@ export const DatabaseContext = createContext();
 
 // This context provider is passed to any component requiring the context
 export const DatabaseProvider = ({ children }) => {
-  const [pageTitle, setPageTitle] = useState([]);
   const [artistList, setArtistList] = useState([]);
   const [songList, setSongList] = useState([]);
   const [albumList, setAlbumList] = useState([]);
-  const [artistFetchType, setArtistFetchType] = useState([]);
 
-  const [singleArtist, setSingleArtist] = useState([]);
-  const [singleAlbum, setSingleAlbum] = useState([]);
-  const [singleSong, setSingleSong] = useState([]);
+  const [pageTitle, setPageTitle] = useState(null);
+  const [artistFetchType, setArtistFetchType] = useState(null);
+  const [singleArtist, setSingleArtist] = useState(null);
+  const [singleAlbum, setSingleAlbum] = useState(null);
+  const [singleSong, setSingleSong] = useState(null);
 
   return (
     <DatabaseContext.Provider
