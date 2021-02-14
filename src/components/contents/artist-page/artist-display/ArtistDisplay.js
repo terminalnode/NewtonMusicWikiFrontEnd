@@ -1,11 +1,13 @@
 import './ArtistDisplay.css';
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleArtist } from "../../../../apis/artistActions";
 import { DatabaseContext } from "../../../../DatabaseContext";
 import GoogleMapReact from 'google-map-react';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import AlbumList from '../../album-page/album-list/AlbumList';
+import SongList from '../../song-page/song-list/SongList';
 
 export default function ArtistDisplay() {
   const [ lastArtistId, setLastArtistId ] = useState(null);
@@ -20,7 +22,7 @@ export default function ArtistDisplay() {
   }
 
   console.log(data.singleArtist);
-  return displayArtist(data.singleArtist);
+  return data.singleArtist ? displayArtist(data.singleArtist) : displayArtistMissing(id);
 }
 
 function displayArtistMissing(id) {
@@ -34,10 +36,26 @@ function displayArtistMissing(id) {
 function displayArtist(artist) {
   // artists.album (list)
   // artist.songs (list)
+  console.log("ARTIST: ", artist);
+  console.log("ARTIST ALBUM: ", artist.albums);
+
   return (
     <div>
       <Typography variant='h1'>{artist.name} (#{artist.id})</Typography>
       <Typography>{artist.description}</Typography>
+
+      <div className="artistPageAlbumList">
+        <Typography variant='h2'>Albums</Typography>
+        <Button>Add New Album</Button>
+        <AlbumList albums={ artist.albums } />   
+      </div>
+
+     <div className="artistPageSongList">
+        <Typography variant='h2'>Songs</Typography>
+        <SongList songs={ artist.songs } />
+      </div>
+
+
       {getMap(artist.longitude, artist.latitude)}
     </div>
   );

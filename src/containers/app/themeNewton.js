@@ -25,5 +25,8 @@ export const themeNewton = createMuiTheme({
     h1: {
       fontSize: '2.5rem',
     },
+    h2: {
+      fontSize: '1.5rem',
+    },
   },
 });
