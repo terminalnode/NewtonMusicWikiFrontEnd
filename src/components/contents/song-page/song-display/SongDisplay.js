@@ -4,10 +4,9 @@ import { useContext, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { getSingleSong } from "../../../../apis/songActions";
 import { DatabaseContext } from "../../../../DatabaseContext";
-import { mapArtistTypeToIcon, mapArtistToRow, artistColumns } from "../../artist-page/artist-list/ArtistList";
-import NewtonButton from "../../../material/newton-button/NewtonButton";
+import { mapArtistTypeToIcon } from "../../artist-page/artist-list/ArtistList";
 import { getArtistList, removeSongFromArtist, addSongtoArtist } from '../../../../apis/artistActions';
-import NewtonDataGrid from '../../../material/newton-data-grid/NewtonDataGrid';
+import ArtistSelectList from '../../../material/artist-select-list/ArtistSelectList';
 
 export default function SongDisplay() {
   const [ lastSongId, setLastSongId ] = useState(null);
@@ -27,7 +26,7 @@ export default function SongDisplay() {
   }
 
   return data.singleSong
-    ? displaySong(data.singleSong, history, data)
+    ? displaySong(history, data)
     : displaySongMissing(id);
 }
 
@@ -39,7 +38,9 @@ function displaySongMissing(id) {
   );
 }
 
-function displaySong(song, history, data) {
+function displaySong(history, data) {
+  const song = data.singleSong;
+
   return (
     <div>
       <Typography
@@ -55,13 +56,11 @@ function displaySong(song, history, data) {
       <div style={{ paddingBottom: '10px' }} />
 
       <Typography variant='h5'>Add artists to song</Typography>
-      <NewtonDataGrid
-        columns={ artistColumns }
-        rows={ mapArtistToRow(data.artistList) }
-        selectAction={ (row) => {
-          addSongtoArtist(row.rowIds[0], song.id)
-            .then(getSingleSong(data, song.id))
-        } }
+      <ArtistSelectList
+        artists={ data.artistList }
+        preSelectedArtists={ song.artists }
+        clickAction={ x => addSongtoArtist(x.id, song.id) }
+        preSelectedClickAction={ x => removeSongFromArtist(x.id, song.id) }
       />
     </div>
   );
@@ -75,13 +74,6 @@ function songToArtistList(song, history, data) {
   return song.artists.map((x) => {
     return (
       <Box display="flex" flexDirection="row" style={{ paddingBottom: '10px', width: '100%' }}>
-        <NewtonButton
-          text = "Remove"
-          action = { () => {
-            removeSongFromArtist(x.id, song.id);
-            getSingleSong(data, song.id);
-          } }
-        />
         <div style={{paddingLeft: '10px'}} />
         { mapArtistTypeToIcon(x.type) }
         <Typography
