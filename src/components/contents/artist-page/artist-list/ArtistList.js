@@ -6,7 +6,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import { Tooltip, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
-const columns = [
+export const artistColumns = [
   { field: 'name', headerName: 'Performer', width: 250, renderCell: mapArtistNameWithIcon },
   { field: 'longitude', headerName: 'Long.', width: 95, renderCell: trimDecimals },
   { field: 'latitude', headerName: 'Lat.', width: 95, renderCell: trimDecimals },
@@ -59,7 +59,7 @@ export function mapArtistTypeToIcon(type) {
   }
 }
 
-function mapArtistToRow(artists) {
+export function mapArtistToRow(artists) {
   return artists.map(x => {
     const artist = {};
     artist.id = x.id;
@@ -90,7 +90,7 @@ export default function ArtistList({artists}) {
 
   return (
       <NewtonDataGrid
-        columns={ columns }
+        columns={ artistColumns }
         rows={ mapArtistToRow(artists) }
         selectAction={ (newSelection) => rowClick(newSelection, history) }
       />

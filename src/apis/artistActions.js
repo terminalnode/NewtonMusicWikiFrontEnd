@@ -1,4 +1,5 @@
 import endpoint from './endpoint';
+import { getSingleSong } from './songActions';
 
 export const getSingleArtist = async (data, id) => {
   await endpoint.get(`/rest/v1/artist/${id}`)
@@ -49,5 +50,15 @@ export const getBandArtistList = async (data) => {
       data.setArtistFetchType("BAND");
       data.setArtistList(resp.data.artists);
     })
+    .catch(e => console.log("Error:", e));
+}
+
+export const removeSongFromArtist = async (artistId, songId) => {
+  return await endpoint.get(`/rest/v1/artist/${artistId}/songs/remove/${songId}`)
+    .catch(e => console.log("Error:", e));
+}
+
+export const addSongtoArtist = async (artistId, songId) => {
+  return await endpoint.get(`/rest/v1/artist/${artistId}/songs/add/${songId}`)
     .catch(e => console.log("Error:", e));
 }

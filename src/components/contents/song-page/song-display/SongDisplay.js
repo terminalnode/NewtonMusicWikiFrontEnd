@@ -2,11 +2,12 @@ import './SongDisplay.css';
 import { Box, Typography } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { getSingleSong, editThenUpdateSong } from "../../../../apis/songActions";
+import { getSingleSong } from "../../../../apis/songActions";
 import { DatabaseContext } from "../../../../DatabaseContext";
-import { mapArtistTypeToIcon } from "../../artist-page/artist-list/ArtistList";
+import { mapArtistTypeToIcon, mapArtistToRow, artistColumns } from "../../artist-page/artist-list/ArtistList";
 import NewtonButton from "../../../material/newton-button/NewtonButton";
-import { getArtistList } from '../../../../apis/artistActions';
+import { getArtistList, removeSongFromArtist, addSongtoArtist } from '../../../../apis/artistActions';
+import NewtonDataGrid from '../../../material/newton-data-grid/NewtonDataGrid';
 
 export default function SongDisplay() {
   const [ lastSongId, setLastSongId ] = useState(null);
@@ -50,6 +51,18 @@ function displaySong(song, history, data) {
       <div className='ArtistLinkList'>
         {songToArtistList(song, history, data)}
       </div>
+
+      <div style={{ paddingBottom: '10px' }} />
+
+      <Typography variant='h5'>Add artists to song</Typography>
+      <NewtonDataGrid
+        columns={ artistColumns }
+        rows={ mapArtistToRow(data.artistList) }
+        selectAction={ (row) => {
+          addSongtoArtist(row.rowIds[0], song.id)
+            .then(getSingleSong(data, song.id))
+        } }
+      />
     </div>
   );
 }
@@ -65,8 +78,8 @@ function songToArtistList(song, history, data) {
         <NewtonButton
           text = "Remove"
           action = { () => {
-            song.artists = song.artists.filter(a => a.id !== x.id);
-            editThenUpdateSong(data, song);
+            removeSongFromArtist(x.id, song.id);
+            getSingleSong(data, song.id);
           } }
         />
         <div style={{paddingLeft: '10px'}} />
