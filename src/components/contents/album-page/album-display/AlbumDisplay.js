@@ -3,11 +3,10 @@ import { useContext, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { DatabaseContext } from "../../../../DatabaseContext";
 import { getSingleAlbum } from "../../../../apis/albumActions";
-import { mapArtistTypeToIcon, mapArtistToRow, artistColumns } from "../../artist-page/artist-list/ArtistList";
+import { mapArtistTypeToIcon } from "../../artist-page/artist-list/ArtistList";
 import { Box, Typography } from '@material-ui/core';
-import NewtonDataGrid from '../../../material/newton-data-grid/NewtonDataGrid';
-import NewtonButton from '../../../material/newton-button/NewtonButton';
 import { getArtistList, removeAlbumFromArtist, addAlbumToArtist } from '../../../../apis/artistActions';
+import ArtistSelectList from '../../../material/artist-select-list/ArtistSelectList';
 
 export default function AlbumDisplay() {
   const [ lastAlbumId, setLastAlbumId ] = useState(null);
@@ -60,14 +59,12 @@ function displayAlbum(history, data) {
 
       <div style={{ paddingBottom: '10px' }} />
 
-      <Typography variant='h5'>Add artists to song</Typography>
-      <NewtonDataGrid
-        columns={ artistColumns }
-        rows={ mapArtistToRow(data.artistList) }
-        selectAction={ (row) => {
-          addAlbumToArtist(row.rowIds[0], album.id)
-            .then(getSingleAlbum(data, album.id))
-        } }
+      <Typography style={{ paddingBottom: '5px' }} variant='h5'>Add artists to song</Typography>
+      <ArtistSelectList
+        artists={ data.artistList }
+        preSelectedArtists={ album.artists }
+        clickAction={ x => addAlbumToArtist(x.id, album.id) }
+        preSelectedClickAction={ x => removeAlbumFromArtist(x.id, album.id) }
       />
     </div>
   );
@@ -81,13 +78,6 @@ function albumToArtistList(album, history, data) {
   return album.artists.map((x) => {
     return (
       <Box display="flex" flexDirection="row" style={{ paddingBottom: '10px', width: '100%' }}>
-        <NewtonButton
-          text = "Remove"
-          action = { () => {
-            removeAlbumFromArtist(x.id, album.id);
-            getSingleAlbum(data, album.id);
-          } }
-        />
         <div style={{paddingLeft: '10px'}} />
         { mapArtistTypeToIcon(x.type) }
         <Typography
