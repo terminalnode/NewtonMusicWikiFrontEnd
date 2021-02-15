@@ -1,18 +1,22 @@
 import './ArtistDisplay.css';
-import { Button, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getSingleArtist } from "../../../../apis/artistActions";
 import { DatabaseContext } from "../../../../DatabaseContext";
+import { getArtistList, removeSongFromArtist, addSongtoArtist, removeAlbumFromArtist, addAlbumToArtist } from '../../../../apis/artistActions.js';
 import GoogleMapReact from 'google-map-react';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import AlbumList from '../../album-page/album-list/AlbumList';
-import SongList from '../../song-page/song-list/SongList';
+import ItemSelectList from '../../../material/item-select-list/ItemSelectList';
+
+import AlbumIcon from '@material-ui/icons/Album';
+import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 
 export default function ArtistDisplay() {
   const [ lastArtistId, setLastArtistId ] = useState(null);
   const data = useContext(DatabaseContext);
   const { id } = useParams();
+  const history = useHistory();
 
   if (lastArtistId !== id) {
     getSingleArtist(data, id);
@@ -21,8 +25,64 @@ export default function ArtistDisplay() {
     return displayArtistMissing(id);
   }
 
-  console.log(data.singleArtist);
-  return data.singleArtist ? displayArtist(data.singleArtist) : displayArtistMissing(id);
+  console.log("TEST", data.singleArtist);
+  return data.singleArtist ? displayArtist(data, history) : displayArtistMissing(id);
+}
+
+function displayArtist(data, history) {
+  const artistToDisplay = data.singleArtist;
+  console.log("Artist:", artistToDisplay);
+  console.log("Data:", data)
+
+  return (
+    <div>
+      <Typography
+        variant='h1'
+        style={{ paddingBottom: '10px' }}
+      >
+        {artistToDisplay.name} (#{artistToDisplay.id})
+      </Typography>
+      <div className="ArtistAlbumDiv">
+        <Typography
+          variant='h2'
+          style={{ paddingBottom: '10px' }}
+        >
+          Albums
+        </Typography>
+        <div className='AlbumLinkList'>
+          {artistToAlbumList(artistToDisplay, history, data)}
+        </div>
+        <Typography variant='h5'>Add albums to artist</Typography>
+      <ItemSelectList
+        items={ data.albumList }
+        itemType="Album"
+        preSelectedItems={ artistToDisplay.albums }
+        clickAction={ x => addAlbumToArtist(artistToDisplay.id, x.id) }
+        preSelectedClickAction={ x => removeAlbumFromArtist(artistToDisplay.id, x.id) }
+      />
+      </div>
+
+      <div className="ArtistSongDiv">
+        <Typography
+          variant='h2'
+          style={{ paddingBottom: '10px' }}
+        >
+          Songs
+        </Typography>
+        <div className='AlbumLinkList'>
+          {artistToSongList(artistToDisplay, history, data)}
+        </div>
+        <Typography variant='h5'>Add albums to artist</Typography>
+      <ItemSelectList
+        items={ data.songList }
+        itemType="Song"
+        preSelectedItems={ artistToDisplay.songs }
+        clickAction={ x => addSongtoArtist(artistToDisplay.id, x.id ) }
+        preSelectedClickAction={ x => removeSongFromArtist(artistToDisplay.id, x.id) }
+      />
+      </div>
+    </div>
+  );
 }
 
 function displayArtistMissing(id) {
@@ -33,32 +93,52 @@ function displayArtistMissing(id) {
   );
 }
 
-function displayArtist(artist) {
-  // artists.album (list)
-  // artist.songs (list)
-  console.log("ARTIST: ", artist);
-  console.log("ARTIST ALBUM: ", artist.albums);
+function artistToAlbumList(artist, history) {
+  if (!artist.albums || artist.albums.length === 0) {
+    return "unknown";
+  }
 
-  return (
-    <div>
-      <Typography variant='h1'>{artist.name} (#{artist.id})</Typography>
-      <Typography>{artist.description}</Typography>
+  return artist.albums.map((x) => {
+    return (
+      <Box display="flex" flexDirection="row" style={{ paddingBottom: '10px', width: '100%' }}>
+        <div style={{paddingLeft: '10px'}} />
+        <AlbumIcon color='primary' />
+        <Typography
+          variant='h5'
+          className="AlbumLink"
+          path={`/albumss/${x.id}`}
+          onClick={() => history.push(`/albumss/${x.id}`)}
+          style={{paddingLeft: '10px'}}
+        >
+          { x.name }
+        </Typography>
+      </Box>
+    );
+  });
+}
 
-      <div className="artistPageAlbumList">
-        <Typography variant='h2'>Albums</Typography>
-        <Button>Add New Album</Button>
-        <AlbumList albums={ artist.albums } />   
-      </div>
+function artistToSongList(artist, history) {
+  if (!artist.albums || artist.albums.length === 0) {
+    return "unknown";
+  }
 
-     <div className="artistPageSongList">
-        <Typography variant='h2'>Songs</Typography>
-        <SongList songs={ artist.songs } />
-      </div>
-
-
-      {getMap(artist.longitude, artist.latitude)}
-    </div>
-  );
+  return artist.songs.map((x) => {
+    return (
+      <Box display="flex" flexDirection="row" style={{ paddingBottom: '10px', width: '100%' }}>
+        <div style={{paddingLeft: '10px'}} />
+        <AudiotrackIcon color='primary' />
+        <Typography
+          variant='h5'
+          className="AlbumLink"
+          path={`/songss/${x.id}`}
+          onClick={() => history.push(`/songss/${x.id}`)}
+          style={{paddingLeft: '10px'}}
+        >
+          { x.name }
+        </Typography>
+      </Box>
+    );
+  });
 }
 
 function getMap(longitude, latitude) {
