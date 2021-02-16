@@ -16,6 +16,10 @@ export default function ItemSelectList({
 
     const filterTextLabel = "Filter " + itemType;
 
+    if (items == null) {
+        return null
+    }
+
     return(
         <div>
             <TextField

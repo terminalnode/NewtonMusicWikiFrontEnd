@@ -5,6 +5,8 @@ import { useHistory, useParams } from "react-router-dom";
 import { getSingleArtist } from "../../../../apis/artistActions";
 import { DatabaseContext } from "../../../../DatabaseContext";
 import { getArtistList, removeSongFromArtist, addSongtoArtist, removeAlbumFromArtist, addAlbumToArtist } from '../../../../apis/artistActions.js';
+import { getAlbumList } from '../../../../apis/albumActions'
+import { getSongList } from '../../../../apis/songActions'
 import GoogleMapReact from 'google-map-react';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ItemSelectList from '../../../material/item-select-list/ItemSelectList';
@@ -14,22 +16,30 @@ import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 
 export default function ArtistDisplay() {
   const [ lastArtistId, setLastArtistId ] = useState(null);
+  const updateState = useState(0);
   const data = useContext(DatabaseContext);
   const { id } = useParams();
   const history = useHistory();
 
   if (lastArtistId !== id) {
+    console.log("ALPHA", data)
     getSingleArtist(data, id);
-    setLastArtistId(id);
+    
     data.setPageTitle(`Performer ${id}`);
+    data.setArtistList(getAlbumList(data))
+    data.setAlbumList(getArtistList(data))
+    data.setSongList(getSongList(data))
+
+    setLastArtistId(id);
+
     return displayArtistMissing(id);
   }
 
   console.log("TEST", data.singleArtist);
-  return data.singleArtist ? displayArtist(data, history) : displayArtistMissing(id);
+  return data.singleArtist ? displayArtist(data, history, updateState) : displayArtistMissing(id);
 }
 
-function displayArtist(data, history) {
+function displayArtist(data, history, updateState) {
   const artistToDisplay = data.singleArtist;
   console.log("Artist:", artistToDisplay);
   console.log("Data:", data)
@@ -57,7 +67,12 @@ function displayArtist(data, history) {
         items={ data.albumList }
         itemType="Album"
         preSelectedItems={ artistToDisplay.albums }
-        clickAction={ x => addAlbumToArtist(artistToDisplay.id, x.id) }
+        clickAction={ x => {
+          addAlbumToArtist(artistToDisplay.id, x.id)
+          const oldValue = updateState[0]
+          updateState[1](oldValue + 1)
+          console.log("UpdateValue", updateState[0])
+        }}
         preSelectedClickAction={ x => removeAlbumFromArtist(artistToDisplay.id, x.id) }
       />
       </div>
@@ -72,7 +87,7 @@ function displayArtist(data, history) {
         <div className='AlbumLinkList'>
           {artistToSongList(artistToDisplay, history, data)}
         </div>
-        <Typography variant='h5'>Add albums to artist</Typography>
+        <Typography variant='h5'>Add songs to artist</Typography>
       <ItemSelectList
         items={ data.songList }
         itemType="Song"
@@ -107,7 +122,9 @@ function artistToAlbumList(artist, history) {
           variant='h5'
           className="AlbumLink"
           path={`/albumss/${x.id}`}
-          onClick={() => history.push(`/albumss/${x.id}`)}
+          onClick={() =>  { 
+            history.push(`/albumss/${x.id}`)
+          }}
           style={{paddingLeft: '10px'}}
         >
           { x.name }
