@@ -98,7 +98,7 @@ function displayArtist(data, history, updateState) {
         preSelectedClickAction={ x => removeSongFromArtist(artistToDisplay.id, x.id) }
       />
       </div>
-     { getMap() }
+     { getMap(artistToDisplay.longitude, artistToDisplay.latitude) }
     </div>
   );
 }
