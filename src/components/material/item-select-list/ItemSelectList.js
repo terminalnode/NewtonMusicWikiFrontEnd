@@ -16,10 +16,11 @@ export default function ItemSelectList({
 
     const filterTextLabel = "Filter " + itemType;
 
-    if (items == null) {
+    console.log("ITEMS:", items);
+    if (items == null || items.then) {
         return null
     }
-
+    
     return(
         <div>
             <TextField

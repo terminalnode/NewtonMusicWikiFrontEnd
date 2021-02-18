@@ -44,6 +44,8 @@ function displayArtist(data, history, updateState) {
   console.log("Artist:", artistToDisplay);
   console.log("Data:", data)
 
+  console.log("AlbumList:", data.albumList || [])
+
   return (
     <div>
       <Typography
@@ -64,7 +66,7 @@ function displayArtist(data, history, updateState) {
         </div>
         <Typography variant='h5'>Add albums to artist</Typography>
       <ItemSelectList
-        items={ data.albumList }
+        items={ data.albumList || [] }
         itemType="Album"
         preSelectedItems={ artistToDisplay.albums }
         clickAction={ x => {
@@ -89,13 +91,14 @@ function displayArtist(data, history, updateState) {
         </div>
         <Typography variant='h5'>Add songs to artist</Typography>
       <ItemSelectList
-        items={ data.songList }
+        items={ data.songList || [] }
         itemType="Song"
         preSelectedItems={ artistToDisplay.songs }
         clickAction={ x => addSongtoArtist(artistToDisplay.id, x.id ) }
         preSelectedClickAction={ x => removeSongFromArtist(artistToDisplay.id, x.id) }
       />
       </div>
+     { getMap() }
     </div>
   );
 }
